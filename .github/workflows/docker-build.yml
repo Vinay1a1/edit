@@ -1,6 +1,9 @@
 name: Build and release docker image
 on:
   workflow_dispatch:
+  push:
+    tags:
+      - '*' 
 
 jobs:
   build:
@@ -33,4 +36,7 @@ jobs:
       - name: Release
         uses: ncipollo/release-action@v1
         with:
+          tag: v${{ github.run_number }}
           artifacts: "fmhy-website.tar"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
