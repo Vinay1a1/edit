@@ -1,12 +1,3 @@
-FROM node:16-alpine
-
-WORKDIR /app
-
-
-COPY . .
+FROM nginx:alpine
+COPY out/dist /usr/share/nginx/html
 EXPOSE 80
-
-RUN npm install -g http-server
-
-
-CMD ["http-server", "-p", "8080"]
